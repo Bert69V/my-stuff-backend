@@ -47,8 +47,8 @@ private final ItemRepo repo;
 		
 		@PostMapping
 		@ResponseStatus(value = HttpStatus.CREATED)
-		public Item saveItem(@RequestBody Item newImage) {
-			return this.repo.save(newImage);
+		public Item saveItem(@RequestBody Item newItem) {
+			return this.repo.save(newItem);
 		}
 
 		
