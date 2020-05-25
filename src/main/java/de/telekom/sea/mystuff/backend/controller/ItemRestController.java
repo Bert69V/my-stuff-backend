@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -38,7 +39,7 @@ private final ItemRepo repo;
 
 		@GetMapping("{/id}")
 		@ResponseStatus(value = HttpStatus.OK)
-		public Item getById(@PathVariable("id") Long id) {
+		public Item getById(@RequestParam Long id) {
 			return this.repo.findById(id).orElseThrow(() -> {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 			});
@@ -71,7 +72,7 @@ private final ItemRepo repo;
 
 		@DeleteMapping("{/id}")
 		@ResponseStatus(value = HttpStatus.NO_CONTENT)
-		  public void deleteItem(@PathVariable Long id) {
+		  public void deleteItem(@RequestParam Long id) {
 		    repo.deleteById(id);
 		  }
 
