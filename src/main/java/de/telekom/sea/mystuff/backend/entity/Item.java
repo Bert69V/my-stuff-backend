@@ -1,7 +1,6 @@
 package de.telekom.sea.mystuff.backend.entity;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,10 +22,10 @@ public class Item {
 	private int amount;
 	private String location;
 	private String description;
-	private Date lastUsed;
+	private LocalDate lastUsed;
 	
 	
-	public Item(Long id, String name, int amount, String location, String description, Date lastUsed) {
+	public Item(Long id, String name, int amount, String location, String description, LocalDate lastUsed) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,10 +36,7 @@ public class Item {
 	}	
 	
 	public Item () {
-		
+
 	}
-	
-	
-	
-	
+
 }

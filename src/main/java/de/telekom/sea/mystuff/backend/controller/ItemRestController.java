@@ -20,7 +20,7 @@ import de.telekom.sea.mystuff.backend.entity.Item;
 import de.telekom.sea.mystuff.backend.repository.ItemRepo;;
 
 @RestController
-@RequestMapping("/api/v1/items")	
+@RequestMapping("api/v1/items")	
 public class ItemRestController {
 
 private final ItemRepo repo;
