@@ -37,9 +37,9 @@ private final ItemRepo repo;
 			return this.repo.findAll();
 		}
 
-		@GetMapping("{/id}")
+		@GetMapping("{id}")
 		@ResponseStatus(value = HttpStatus.OK)
-		public Item getById(@RequestParam Long id) {
+		public Item getById(@PathVariable ("id") Long id) {
 			return this.repo.findById(id).orElseThrow(() -> {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 			});
@@ -56,7 +56,7 @@ private final ItemRepo repo;
 
 		@PutMapping("{id}")
 		@ResponseStatus(value = HttpStatus.OK)
-		 public Item updateItem (@RequestBody Item newItem, @PathVariable Long id) {
+		 public Item updateItem (@RequestBody Item newItem, @PathVariable ("id") Long id) {
 		  		
 		Item item = repo.findById(id).get(); 
 		item.setName(newItem.getName());

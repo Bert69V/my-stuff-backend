@@ -36,7 +36,7 @@ public class ItemRestControllerTest {
 
 	@Test
 	void shouldBeAbleToUploadAnItem() {
-		Item testfall = createTinOpener();
+		Item testfall = TinOpener();
 
 		ResponseEntity<Item> response = restTemplate.postForEntity(BASE_PATH, testfall, Item.class);
 
@@ -47,10 +47,10 @@ public class ItemRestControllerTest {
 
 	@Test
 	void shouldReadAllItems() {
-		createTinOpener();
-		createTinOpener();
-		createTinOpener();
-		createTinOpener();
+		TinOpener();
+		TinOpener();
+		TinOpener();
+		TinOpener();
 				
 		ResponseEntity<Item []> anfrage = restTemplate.getForEntity(BASE_PATH, Item [].class); 
 		assertThat(anfrage.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -59,17 +59,28 @@ public class ItemRestControllerTest {
 
 	@Test
 	void shouldFindOneItem() {
-
+		
+		Item testfall = givenAnInsertedItem().getBody(); 
+				
+		ResponseEntity<Item>response = restTemplate.getForEntity(BASE_PATH + "/" + testfall.getId(), Item.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 	@Test
 	void shouldFindNoItemForUnknownId() throws URISyntaxException {
-
+		
+		long id = 4711;
+		ResponseEntity<Item>response = restTemplate.getForEntity(BASE_PATH + "/" + id, Item.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+				
 	}
 
 	@Test
 	void shouldBeAbleToDeleteAnItem() throws URISyntaxException {
-
+		
+		Item testfall = givenAnInsertedItem().getBody();
+				
+		
 	}
 
 	@Test
@@ -87,11 +98,11 @@ public class ItemRestControllerTest {
 	}
 
 	private ResponseEntity<Item> givenAnInsertedItem() {
-		Item example = createTinOpener();
+		Item example = TinOpener();
 		return restTemplate.postForEntity(BASE_PATH, example, Item.class);
 	}
 
-	private Item createTinOpener() {
+	private Item TinOpener() {
 		Item example = new Item();
 		example.setName("Tin-Opener");
 		example.setAmount(3);
