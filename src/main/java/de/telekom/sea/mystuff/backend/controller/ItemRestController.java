@@ -19,7 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import de.telekom.sea.mystuff.backend.entity.Item;
 import de.telekom.sea.mystuff.backend.repository.ItemRepo;;
-
+//This is a comment
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/items")	
